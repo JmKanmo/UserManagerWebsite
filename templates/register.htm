@@ -7,9 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
@@ -46,6 +45,25 @@
         }
     </style>
 
+    <script>
+        function regist() {
+            $.ajax({
+                url: '/api/v1/users',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    userid: $('#userid').val(),
+                    username: $('#username').val(),
+                    birthdate: $('#birthdate').val(),
+                    password: $('#password').val()
+                })
+            }).done(function (res) {
+                console.log(res);
+                alert('회원가입이 완료되었습니당');
+                window.location = '/api/v1/users';
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -56,7 +74,6 @@
 
         <div class="row-2">
             <div class="forms">
-                <form action="/api/v1/users" method="post">
                     <div class="form-group">
                         <label for="userid"><b>사용자id:</b></label>
                         <input type="text" class="form-control" style="width: 500px;" id="userid" placeholder="id입력"
@@ -67,25 +84,21 @@
                         <label for="username"><b>사용자이름:</b></label>
                         <input type="text" class="form-control" style="width: 500px;" id="username" placeholder="이름입력"
                             name="username">
-
                     </div>
 
                     <div class="form-group">
                         <label for="birthdate"><b>생년월일입력:</b></label>
                         <input type="text" class="form-control" style="width: 500px;" id="birthdate"
                             placeholder="ex) 19940707" name="birthdate">
-
                     </div>
 
                     <div class="form-group">
                         <label for="password"><b>사용자 비밀번호:</b></label>
                         <input type="password" class="form-control" style="width: 500px;" id="password"
                             placeholder="비밀번호입력" name="password">
-
                     </div>
 
-                    <button type="submit" class="btn btn-primary">등록</button>
-                </form>
+                    <button type="button" class="btn btn-primary" onclick="regist();">등록</button>
             </div>
         </div>
     </div>
