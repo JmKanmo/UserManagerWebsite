@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <title>로그인</title>
+
+    <style>
+        body {
+            background-image: url("../static/image/Background.jpg")
+        }
+
+        .container {
+            width: 450px;
+            height: 300px;
+            margin-top: 10%;
+            margin-left: 30%;
+        }
+
+        .title {
+            text-align: center;
+            color: lightseagreen;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            border: 1px solid lightseagreen;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        .formGroup {
+            margin-top: 5%;
+            margin-left: 10%;
+            margin-right: 5%;
+        }
+
+        .pw_form {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function login() {
+            $.ajax({
+                url: '/auth',
+                contentType: 'application/json',
+                method: 'POST',
+                data: JSON.stringify({
+                    username: $('#userid').val(),
+                    password: $('#password').val()
+                }),
+                error: function (res) {
+                    alert('로그인실패');
+                }
+            }).done(function (res) {
+                console.log(res);
+                $.cookie('access_token', res.access_token);
+                alert('로그인에 성공했습니당:)');
+                window.location = '/';
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="title">
+            <h1>Log in</h1>
+        </div>
+
+        <div class="box">
+            <div class="formGroup">
+                <div class="id_form">
+                    <label for="userid"><b>사용자id:</b></label>
+                    <input type="text" class="form-control" id="userid" placeholder="id입력" name="userid">
+                </div>
+
+                <div class="pw_form">
+                    <label for="password"><b>사용자 비밀번호:</b></label>
+                    <input type="password" class="form-control" id="password" placeholder="비밀번호입력" name="password">
+                </div>
+
+                <button type="button" class="btn btn-outline-success" onclick="login();"
+                    style="margin-top:10%;">로그인</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

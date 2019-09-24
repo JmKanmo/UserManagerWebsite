@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <title>메인화면</title>
+
+    <style>
+        body {
+            background-image: url("../static/image/Background.jpg")
+        }
+
+        .container {
+            margin-top: 5%;
+            margin-right: 40%;
+            width: 400px;
+            height: 450px;
+            border: 1.1px solid darkorchid;
+        }
+
+        .login_btn {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .login_btn button {
+            width: 300px;
+            height: 50px;
+        }
+
+        .logout_btn {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .logout_btn button {
+            width: 300px;
+            height: 50px;
+        }
+
+        .regist_btn {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .regist_btn button {
+            width: 300px;
+            height: 50px;
+        }
+
+        .userInfo_btn {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .userInfo_btn button {
+            width: 300px;
+            height: 50px;
+        }
+    </style>
+
+    <script>
+        function login() {
+            $.ajax({
+
+            }).done(function () {
+                window.location = '/login';
+            });
+        }
+
+        function logout() {
+            if ($.cookie('access_token')) {
+                alert('로그인되어있습니다.');
+            } else {
+                $.removeCookie('access_token');
+                alert('로그아웃되었습니다.');
+                window.location = '/login';
+            }
+        }
+
+        function register() {
+            $.ajax({
+
+            }).done(function () {
+                window.location = '/register';
+            });
+        }
+
+        function getInfo() {
+            $.ajax({
+
+            }).done(function () {
+                window.location = '/home';
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="login_btn">
+            <button type="button" class="btn btn-outline-success" onclick="login();">로그인</button>
+        </div>
+
+        <div class="logout_btn">
+            <button type="button" class="btn btn-outline-warning" onclick="logout();">로그아웃</button>
+        </div>
+
+        <div class="regist_btn">
+            <button type="button" class="btn btn-outline-primary" onclick="register();">회원가입</button>
+        </div>
+
+        <div class="userInfo_btn">
+            <button type="button" class="btn btn-outline-danger" onclick="getInfo();">회원정보</button>
+        </div>
+    </div>
+</body>
+
+</html>

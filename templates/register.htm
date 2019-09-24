@@ -15,6 +15,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
     <title>회원가입홈페이지</title>
 
     <style>
@@ -59,8 +61,8 @@
                 })
             }).done(function (res) {
                 console.log(res);
-                alert('회원가입이 완료되었습니당');
-                window.location = '/api/v1/users';
+                alert('회원가입에 성공했습니당:)');
+                window.location = '/';
             });
         }
     </script>
@@ -74,31 +76,31 @@
 
         <div class="row-2">
             <div class="forms">
-                    <div class="form-group">
-                        <label for="userid"><b>사용자id:</b></label>
-                        <input type="text" class="form-control" style="width: 500px;" id="userid" placeholder="id입력"
-                            name="userid">
-                    </div>
+                <div class="form-group">
+                    <label for="userid"><b>사용자id:</b></label>
+                    <input type="text" class="form-control" style="width: 500px;" id="userid" placeholder="id입력"
+                        name="userid">
+                </div>
 
-                    <div class="form-group">
-                        <label for="username"><b>사용자이름:</b></label>
-                        <input type="text" class="form-control" style="width: 500px;" id="username" placeholder="이름입력"
-                            name="username">
-                    </div>
+                <div class="form-group">
+                    <label for="username"><b>사용자이름:</b></label>
+                    <input type="text" class="form-control" style="width: 500px;" id="username" placeholder="이름입력"
+                        name="username">
+                </div>
 
-                    <div class="form-group">
-                        <label for="birthdate"><b>생년월일입력:</b></label>
-                        <input type="text" class="form-control" style="width: 500px;" id="birthdate"
-                            placeholder="ex) 19940707" name="birthdate">
-                    </div>
+                <div class="form-group">
+                    <label for="birthdate"><b>생년월일입력:</b></label>
+                    <input type="text" class="form-control" style="width: 500px;" id="birthdate"
+                        placeholder="ex) 19940707" name="birthdate">
+                </div>
 
-                    <div class="form-group">
-                        <label for="password"><b>사용자 비밀번호:</b></label>
-                        <input type="password" class="form-control" style="width: 500px;" id="password"
-                            placeholder="비밀번호입력" name="password">
-                    </div>
+                <div class="form-group">
+                    <label for="password"><b>사용자 비밀번호:</b></label>
+                    <input type="password" class="form-control" style="width: 500px;" id="password" placeholder="비밀번호입력"
+                        name="password">
+                </div>
 
-                    <button type="button" class="btn btn-primary" onclick="regist();">등록</button>
+                <button type="button" class="btn btn-primary" onclick="regist();">등록</button>
             </div>
         </div>
     </div>
