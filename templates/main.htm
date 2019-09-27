@@ -77,20 +77,20 @@
 
     <script>
         function login() {
-            $.ajax({
-
-            }).done(function () {
+            if ($.cookie('access_token')) {
+                alert('이미 로그인되어있습니다.')
+            } else {
                 window.location = '/login';
-            });
+            }
         }
 
         function logout() {
             if ($.cookie('access_token')) {
-                alert('로그인되어있습니다.');
-            } else {
                 $.removeCookie('access_token');
                 alert('로그아웃되었습니다.');
                 window.location = '/login';
+            } else {
+                alert('로그인되어있지않습니다.');
             }
         }
 
@@ -98,7 +98,11 @@
             $.ajax({
 
             }).done(function () {
-                window.location = '/register';
+                if ($.cookie('access_token')) {
+                    alert('로그아웃을 하시고 진행해주세요.');
+                } else {
+                    window.location = '/register';
+                }   
             });
         }
 

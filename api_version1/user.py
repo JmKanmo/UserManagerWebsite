@@ -6,9 +6,27 @@ from models import UserModel
 from models import db
 
 
-@api.route('/users', methods=['GET', 'POST'])
-@jwt_required()
-def users():
+@api.route('/find', methods=['GET', 'POST'])
+def find():
+    if request.method == 'POST':
+        data = request.get_json()
+        username = data.get('username')
+        birthdate = data.get('birthdate')
+
+        if not(username and birthdate):
+            return jsonify({'error': 'No arguments'}), 400
+
+        users_info = UserModel().query.filter(UserModel.name == username,
+                                              UserModel.birthdate == birthdate).all()
+
+        if len(users_info) == 0:
+            return jsonify({'error': 'No arguments'}), 400
+
+    return jsonify([user_info.serialize for user_info in users_info])
+
+
+@api.route('/regist', methods=['GET', 'POST'])
+def regist():
     if request.method == 'POST':
         data = request.get_json()
         username = data.get('username')
@@ -29,9 +47,11 @@ def users():
         db.session.commit()
         return jsonify(), 201
 
-    else:
-        users_info = UserModel.query.all()
 
+@api.route('/users', methods=['GET', 'POST'])
+@jwt_required()
+def users():
+    users_info = UserModel.query.all()
     return jsonify([user_info.serialize for user_info in users_info])
 
 

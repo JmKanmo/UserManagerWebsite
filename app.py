@@ -24,6 +24,11 @@ def home():
     return render_template('home.htm')
 
 
+@app.route('/find')
+def find():
+    return render_template('info_popup.htm')
+
+
 @app.route('/')
 def main():
     return render_template('main.htm')

@@ -50,7 +50,7 @@
     <script>
         function regist() {
             $.ajax({
-                url: '/api/v1/users',
+                url: '/api/v1/regist',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -58,11 +58,14 @@
                     username: $('#username').val(),
                     birthdate: $('#birthdate').val(),
                     password: $('#password').val()
-                })
+                }),
+                error: function (res) {
+                    alert('회원가입실패');
+                }
             }).done(function (res) {
                 console.log(res);
                 alert('회원가입에 성공했습니당:)');
-                window.location = '/';
+                window.location = '/login';
             });
         }
     </script>

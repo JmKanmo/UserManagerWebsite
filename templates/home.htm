@@ -21,9 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <title>Home</title>
 
-    <style>
-    </style>
-
     <script>
         $(document).ready(function () {
             $.ajax({
@@ -34,7 +31,7 @@
                     xhr.setRequestHeader('Authorization', 'JWT ' + $.cookie('access_token'))
                 },
                 error: function (res) {
-                    alert('ERROR -> ' + JSON.stringify(res));
+                    alert('에러발생 -> 로그인작업이 필요합니다' );
                     history.back();
                 }
             }).done(function (res) {

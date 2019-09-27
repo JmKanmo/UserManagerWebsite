@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <title>아이디/비밀번호찾기</title>
+
+  <style>
+    .header {
+      height: 60px;
+      border: 1px solid darkseagreen;
+      text-align: center;
+      padding-top: 2%;
+    }
+
+    .input_form {
+      height: 250px;
+      margin-top: 10%;
+      margin-left: 5%;
+    }
+  </style>
+
+  <script>
+    function findInfo() {
+      $.ajax({
+        url: '/api/v1/find',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          username: $('#username').val(),
+          birthdate: $('#birthdate').val()
+        }),
+        error: function (res) {
+          alert('입력한정보가 올바르지않습니다.');
+        }
+      }).done(function (res) {
+        for (var i = 0; i < res.length; i++) {
+          var name = res[i]['name'];
+          var id = res[i]['id'];
+          var pw = res[i]['password'];
+          var birthdate = res[i]['birthdate'];
+
+          document.write('id: ' + id + '<br>' + 'pw: ' + pw + '<br>');
+          document.write('<br><br>');
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h3>아이디 / 비밀번호 찾기</h3>
+    </header>
+
+    <div class="input_form">
+      <div class="nameform">
+        <label for="username"><b>이름</b></label>
+        <input type="text" style="width: 250px; height: 30px; margin-left: 5%;" id="username" placeholder="이름을 입력하세요."
+          name="username">
+      </div>
+
+      <div class="birthdate_form">
+        <label for="birthdate"><b>생년월일</b></label>
+        <input type="text" style="width: 250px; height: 30px; margin-left: 5%; margin-top:7%;" id="birthdate"
+          placeholder="입력예시: 1994-07-01" name="birthdate">
+      </div>
+
+
+      <button type="button" style="margin-top: 5%; width: 75px;" class="btn btn-outline-success"
+        onclick="findInfo();">찾기</button>
+    </div>
+
+  </div>
+</body>
+
+</html>

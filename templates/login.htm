@@ -79,11 +79,21 @@
                 window.location = '/';
             });
         }
+
+        function findInfo() {
+            var url = "/find";
+            var name = "popup test";
+            var option = "width = 500, height = 400, top = 100, left = 200, location = no"
+            window.open(url, name, option);
+        }
     </script>
 
 </head>
 
 <body>
+
+    <a href="http://127.0.0.1:5000/">뒤로가기</a>
+
     <div class="container">
 
         <div class="title">
@@ -103,7 +113,11 @@
                 </div>
 
                 <button type="button" class="btn btn-outline-success" onclick="login();"
-                    style="margin-top:10%;">로그인</button>
+                    style="margin-top: 10%; margin-left: 40%;">로그인</button>
+
+
+                <button type="button" class="btn btn-outline-primary" onclick="findInfo();"
+                    style="margin-top: 10%; margin-left: 7%;">id/pw찾기</button>
             </div>
         </div>
     </div>
