@@ -1,5 +1,11 @@
 # BasicFlaskWeb2
 
-Flask Framework 로 개발하는 회원관리웹사이트 심화
+Flask Framework 로 개발해본 간단한 회원관리웹사이트
 
--> Restful API기능을 이용한 클라이언트,서버통신  +  JWT인증방식의 로그인,로그아웃방식
+개발환경: vs-code
+구성: Restful API기능을 이용한 클라이언트와 서버의 데이터통신 + JWT인증방식의 로그인,로그아웃기능구현
+
+
+실행:  1. clone을 vscode로 다운받는다
+       2. cmd terminal창을 열고 python app.py 입력
+       3. 실행후 출력된 ip주소로 인터넷창을 열고 접속
